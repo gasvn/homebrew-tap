@@ -7,14 +7,17 @@ answers the 2FA login for you, so you log in once and stay connected.
 ## Install
 
 ```sh
-brew install --cask --no-quarantine gasvn/tap/ssh2fa
+brew install --cask gasvn/tap/ssh2fa \
+  && xattr -dr com.apple.quarantine /Applications/SSH2FA.app \
+  && open /Applications/SSH2FA.app
 ```
 
-> **Why `--no-quarantine`?** SSH2FA isn't notarized yet (that's the
-> [$99 Apple Developer goal](https://shgao.site/ssh2fa/#support)). The flag tells
-> Homebrew to skip the macOS Gatekeeper quarantine, so the app opens with no
-> "unverified developer" warning. Without it, the first launch is blocked — allow
-> it once via **System Settings → Privacy & Security → "Open Anyway."**
+> **Why the extra steps?** SSH2FA isn't notarized yet (that's the
+> [$99 Apple Developer goal](https://shgao.site/ssh2fa/#support)), so Homebrew
+> quarantines it on install and macOS blocks the first launch. The `xattr` line
+> clears that flag so it opens with no "unverified developer" warning — or just
+> allow it once via **System Settings → Privacy & Security → "Open Anyway."**
+> (Don't use the old `--no-quarantine` install flag — newer Homebrew removed it.)
 
 ## Update / uninstall
 
