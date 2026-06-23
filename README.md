@@ -22,7 +22,7 @@ brew install --cask gasvn/tap/ssh2fa \
 ## Update / uninstall
 
 ```sh
-brew upgrade --cask ssh2fa            # update to the latest release
+brew reinstall --cask ssh2fa          # update to the latest release
 brew uninstall --cask ssh2fa          # remove the app
 brew uninstall --zap --cask ssh2fa    # also wipe saved hosts + Keychain creds
 ```
